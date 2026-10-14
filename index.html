@@ -48,6 +48,12 @@
         .game-card img { width: 130px; height: 130px; border-radius: 22px; object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 18px rgba(0,0,0,0.6); }
         .game-card h3 { margin: 10px 0 5px 0; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; }
         .game-card p { font-size: 12px; color: #8da0c4; margin: 0; }
+        @media (max-width: 600px) {
+            .game-grid { gap: 14px; }
+            .game-card { width: 100%; max-width: 300px; padding: 14px 12px 12px; border-radius: 22px; }
+            .game-card img { width: 90px; height: 90px; border-radius: 18px; margin-bottom: 8px; }
+            .game-card h3 { margin: 6px 0 4px 0; font-size: 15px; }
+        }
 
         .product-card { background-color: #12224a; border: 1px solid #1f2d4a; border-radius: 15px; width: 280px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
         .product-card.orange:hover { transform: translateY(-5px); border-color: #ff7a28; box-shadow: 0 0 20px rgba(255,122,40,0.3); }
