@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -414,38 +415,68 @@
         .acc-detail-container { text-align: center; }
         .acc-detail-img { width: 100%; max-width: 700px; border-radius: 16px; border: 2px solid #2f7bff; box-shadow: 0 0 25px rgba(47,123,255,0.3); margin-bottom: 25px; }
 
-        .music-floating {
+        .music-player {
             position: fixed;
-            bottom: 90px;
+            bottom: 16px;
             right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             background-color: #12224a;
             border: 1px solid #ff7a28;
             border-radius: 30px;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            padding: 6px 14px 6px 6px;
             box-shadow: 0 4px 15px rgba(255, 122, 40, 0.4);
             z-index: 1500;
-            cursor: pointer;
-            transition: 0.3s;
         }
-        .music-floating:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 122, 40, 0.6);
-        }
-        .music-icon {
-            font-size: 18px;
-            animation: spin 3s linear infinite paused;
-        }
-        .music-floating.playing .music-icon {
-            animation-play-state: running;
-        }
-        .music-text {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
+        .mp-play {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background-color: #ff7a28;
             color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        .mp-play:hover { transform: scale(1.1); }
+        .mp-vol-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 17px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+        .mp-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 80px;
+            height: 5px;
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            background: linear-gradient(to right, #ff7a28 var(--v, 50%), #2a3a5e var(--v, 50%));
+        }
+        .mp-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #ff7a28;
+        }
+        .mp-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #ff7a28;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -477,7 +508,7 @@
 
         footer { text-align: center; padding: 20px; background-color: transparent; color: #8da0c4; margin-top: 50px; font-size: 14px; }
 
-        .zalo-floating { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #0068ff; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 104, 255, 0.5); z-index: 1500; text-decoration: none; animation: ring 2s infinite ease-in-out; transition: transform 0.3s; overflow: hidden; }
+        .zalo-floating { position: fixed; bottom: 84px; right: 20px; width: 60px; height: 60px; background-color: #0068ff; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 104, 255, 0.5); z-index: 1500; text-decoration: none; animation: ring 2s infinite ease-in-out; transition: transform 0.3s; overflow: hidden; }
         .zalo-floating:hover { transform: scale(1.1); }
         .zalo-floating img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -818,9 +849,10 @@
         </div>
     </main>
 
-    <div class="music-floating" id="music-toggle-btn" onclick="toggleBGM()">
-        <span class="music-icon">🎵</span>
-        <span class="music-text" id="music-status">Bật nhạc nền</span>
+    <div class="music-player" id="music-player">
+        <button class="mp-play" id="music-toggle-btn" onclick="toggleBGM()" title="Phát / Dừng nhạc">▶</button>
+        <button class="mp-vol-btn" id="music-mute-btn" onclick="toggleMute()" title="Tắt / bật tiếng">🔉</button>
+        <input type="range" class="mp-slider" id="music-volume" min="0" max="100" value="50" oninput="setVolume(this.value)" title="Âm lượng">
     </div>
     <audio id="bgm" loop preload="auto">
         <source src="nhac.mp3" type="audio/mpeg">
@@ -940,24 +972,56 @@
             alert('Chức năng này chưa update!');
         }
 
+        let bgmWantPlay = false;
+
+        function updateVolumeUI() {
+            const bgm = document.getElementById('bgm');
+            const slider = document.getElementById('music-volume');
+            const muteBtn = document.getElementById('music-mute-btn');
+            const vol = bgm.muted ? 0 : bgm.volume;
+            slider.value = Math.round(vol * 100);
+            slider.style.setProperty('--v', slider.value + '%');
+            muteBtn.innerText = vol === 0 ? '🔇' : (vol < 0.5 ? '🔉' : '🔊');
+        }
+
+        function setVolume(v) {
+            const bgm = document.getElementById('bgm');
+            bgm.volume = v / 100;
+            bgm.muted = false;
+            updateVolumeUI();
+        }
+
+        function toggleMute() {
+            const bgm = document.getElementById('bgm');
+            bgm.muted = !bgm.muted;
+            if (!bgm.muted && bgm.volume === 0) bgm.volume = 0.5;
+            updateVolumeUI();
+        }
+
         function toggleBGM() {
             const bgm = document.getElementById('bgm');
             const btn = document.getElementById('music-toggle-btn');
-            const status = document.getElementById('music-status');
 
-            if (bgm.paused) {
+            if (!bgmWantPlay) {
+                bgmWantPlay = true;
+                btn.innerText = '⏳';
                 bgm.play().then(() => {
-                    btn.classList.add('playing');
-                    status.innerText = 'Đang phát nhạc';
+                    if (bgmWantPlay) btn.innerText = '⏸';
                 }).catch(e => {
+                    if (e.name === 'AbortError') return;
+                    bgmWantPlay = false;
+                    btn.innerText = '▶';
                     alert('Không phát được nhạc. Mã lỗi: ' + e.name + ' - ' + e.message);
                 });
             } else {
+                bgmWantPlay = false;
                 bgm.pause();
-                btn.classList.remove('playing');
-                status.innerText = 'Tắt nhạc nền';
+                btn.innerText = '▶';
             }
         }
+
+        document.getElementById('bgm').volume = 0.5;
+        updateVolumeUI();
 
         function openPaymentPopup(accId) {
             document.getElementById('syntax-display').innerText = accId + ' + HỌ VÀ TÊN';
