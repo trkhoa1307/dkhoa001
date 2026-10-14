@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -8,393 +7,76 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Exo+2:wght@600;700;800&display=swap');
 
-        body {
-            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0a1328; 
-            color: #e8eefc; 
-        }
+        body { font-family: 'Be Vietnam Pro', system-ui, sans-serif; margin: 0; padding: 0; background-color: #0a1328; color: #e8eefc; }
 
-        .navbar {
-            background-color: #050914;
-            padding: 12px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ff7a28; 
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        .top-bar { background: linear-gradient(90deg, #ff7a28, #e55300); color: #ffffff; overflow: hidden; white-space: nowrap; padding: 7px 0; font-family: 'Exo 2', sans-serif; font-weight: 800; font-size: 13.5px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(255, 122, 40, 0.3); }
+        .marquee-text { display: inline-block; padding-left: 100%; animation: marquee 14s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        .logo-box {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            gap: 12px; 
-            cursor: pointer;
-        }
+        .navbar { background-color: #050914; padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ff7a28; position: sticky; top: 0; z-index: 1000; }
+        .logo-box { display: flex; align-items: center; text-decoration: none; gap: 12px; cursor: pointer; }
+        .badge-dk { background: linear-gradient(145deg, rgba(47,123,255,0.4), #0b1325); border: 1px solid rgba(47,123,255,0.6); color: #ffffff; font-family: 'Exo 2', sans-serif; font-weight: 800; font-size: 20px; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; }
+        .logo-title { color: #ffffff; font-size: 19px; font-family: 'Exo 2', sans-serif; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links a { color: #8da0c4; text-decoration: none; font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 14px; padding: 5px 0; position: relative; transition: color 0.3s; cursor: pointer; }
+        .nav-links a.active, .nav-links a:hover { color: #ff7a28; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -15px; left: 0; width: 100%; height: 2px; background-color: #ff7a28; }
 
-        .badge-dk {
-            background: linear-gradient(145deg, rgba(47,123,255,0.4), #0b1325);
-            border: 1px solid rgba(47,123,255,0.6);
-            color: #ffffff;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 800;
-            font-size: 20px;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px; 
-            display: grid;
-            place-items: center;
-        }
+        main { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 30px; }
+        .section-title h2 { font-family: 'Exo 2', sans-serif; font-size: 26px; font-weight: 800; margin: 0 0 5px 0; letter-spacing: 1px; }
+        .section-title p { color: #8da0c4; font-size: 15px; margin: 0; }
+        .sub-page-title { margin-bottom: 25px; text-align: left; }
+        .sub-page-title h2 { font-family: 'Exo 2', sans-serif; font-size: 28px; font-weight: 800; color: #ffffff; margin: 0 0 5px 0; text-transform: uppercase; }
+        .sub-page-title p { color: #8da0c4; font-size: 15px; margin: 0; }
 
-        .logo-title {
-            color: #ffffff;
-            font-size: 19px;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
+        .screen { display: none; animation: fadeIn 0.4s ease; }
+        .screen.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .btn-back { display: inline-block; background-color: transparent; color: #8da0c4; border: 1px solid #1f2d4a; padding: 8px 15px; border-radius: 8px; cursor: pointer; margin-bottom: 20px; font-weight: bold; transition: 0.3s; }
+        .btn-back:hover { color: white; border-color: #ff7a28; }
 
-        .nav-links a {
-            color: #8da0c4;
-            text-decoration: none;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            padding: 5px 0;
-            position: relative;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-links a.active, .nav-links a:hover {
-            color: #ff7a28; 
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -15px; 
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #ff7a28;
-        }
-
-        main {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-title h2 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 26px;
-            font-weight: 800;
-            margin: 0 0 5px 0;
-            letter-spacing: 1px;
-        }
-
-        .section-title p {
-            color: #8da0c4;
-            font-size: 15px;
-            margin: 0;
-        }
-
-        .sub-page-title {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        .sub-page-title h2 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 0 0 5px 0;
-            text-transform: uppercase;
-        }
-
-        .sub-page-title p {
-            color: #8da0c4;
-            font-size: 15px;
-            margin: 0;
-        }
-
-        .screen {
-            display: none; 
-            animation: fadeIn 0.4s ease;
-        }
-        .screen.active {
-            display: block; 
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .btn-back {
-            display: inline-block;
-            background-color: transparent;
-            color: #8da0c4;
-            border: 1px solid #1f2d4a;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .btn-back:hover {
-            color: white;
-            border-color: #ff7a28;
-        }
-
-        .game-grid, .product-grid, .tool-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap; 
-        }
-
+        .game-grid, .product-grid, .tool-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .tool-grid { gap: 25px; }
 
-        .game-card {
-            background: linear-gradient(160deg, rgba(47,123,255,0.2), #0b1325);
-            border: 1px solid rgba(47,123,255,0.5);
-            border-radius: 26px;
-            padding: 18px 12px 16px;
-            width: 230px; 
-            text-align: center;
-            text-decoration: none; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-            cursor: pointer;
-        }
+        .game-card { background: linear-gradient(160deg, rgba(47,123,255,0.2), #0b1325); border: 1px solid rgba(47,123,255,0.5); border-radius: 26px; padding: 18px 12px 16px; width: 230px; text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; cursor: pointer; }
+        .game-card.ff { border-color: rgba(255,122,40,0.8); box-shadow: 0 0 15px rgba(255,122,40,0.2); }
+        .game-card.ff:hover { transform: translateY(-2px); border-color: rgba(255,122,40,1); box-shadow: 0 0 34px rgba(255,122,40,0.5); }
+        .game-card.lq { border-color: rgba(47,123,255,0.8); box-shadow: 0 0 15px rgba(47,123,255,0.2); }
+        .game-card.lq:hover { transform: translateY(-2px); border-color: rgba(47,123,255,1); box-shadow: 0 0 34px rgba(47,123,255,0.5); }
+        .game-card img { width: 130px; height: 130px; border-radius: 22px; object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 18px rgba(0,0,0,0.6); }
+        .game-card h3 { margin: 10px 0 5px 0; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; }
+        .game-card p { font-size: 12px; color: #8da0c4; margin: 0; }
 
-        .game-card.ff {
-            border-color: rgba(255,122,40,0.8);
-            box-shadow: 0 0 15px rgba(255,122,40,0.2);
-        }
-        .game-card.ff:hover {
-            transform: translateY(-2px); 
-            border-color: rgba(255,122,40,1);
-            box-shadow: 0 0 34px rgba(255,122,40,0.5); 
-        }
+        .product-card { background-color: #12224a; border: 1px solid #1f2d4a; border-radius: 15px; width: 280px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+        .product-card.orange:hover { transform: translateY(-5px); border-color: #ff7a28; box-shadow: 0 0 20px rgba(255,122,40,0.3); }
+        .product-card.blue:hover { transform: translateY(-5px); border-color: #2f7bff; box-shadow: 0 0 20px rgba(47,123,255,0.3); }
+        .product-card img { width: 100%; height: 160px; object-fit: cover; border-bottom: 2px solid #1f2d4a; cursor: pointer; }
+        .product-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-info h3 { margin: 0 0 10px 0; color: white; font-size: 20px; font-family: 'Exo 2', sans-serif; text-transform: uppercase; }
+        .product-info .desc { color: #8da0c4; font-size: 14px; margin: 0 0 15px 0; line-height: 1.5; flex-grow: 1; }
+        .product-info .price { font-size: 18px; font-weight: 800; font-family: 'Exo 2', sans-serif; margin: 0 0 15px 0; }
 
-        .game-card.lq {
-            border-color: rgba(47,123,255,0.8);
-            box-shadow: 0 0 15px rgba(47,123,255,0.2);
-        }
-        .game-card.lq:hover {
-            transform: translateY(-2px); 
-            border-color: rgba(47,123,255,1);
-            box-shadow: 0 0 34px rgba(47,123,255,0.5); 
-        }
-
-        .game-card img {
-            width: 130px; 
-            height: 130px;
-            border-radius: 22px;
-            object-fit: cover;
-            margin-bottom: 15px;
-            box-shadow: 0 0 18px rgba(0,0,0,0.6);
-        }
-
-        .game-card h3 {
-            margin: 10px 0 5px 0;
-            font-family: 'Exo 2', sans-serif;
-            font-size: 16px;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .game-card p {
-            font-size: 12px;
-            color: #8da0c4;
-            margin: 0;
-        }
-
-        .product-card {
-            background-color: #12224a;
-            border: 1px solid #1f2d4a;
-            border-radius: 15px;
-            width: 280px;
-            overflow: hidden; 
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        }
-
-        .product-card.orange:hover {
-            transform: translateY(-5px);
-            border-color: #ff7a28;
-            box-shadow: 0 0 20px rgba(255,122,40,0.3);
-        }
-
-        .product-card.blue:hover {
-            transform: translateY(-5px);
-            border-color: #2f7bff;
-            box-shadow: 0 0 20px rgba(47,123,255,0.3);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-bottom: 2px solid #1f2d4a;
-            cursor: pointer;
-        }
-
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-info h3 {
-            margin: 0 0 10px 0;
-            color: white;
-            font-size: 20px;
-            font-family: 'Exo 2', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .product-info .desc {
-            color: #8da0c4;
-            font-size: 14px;
-            margin: 0 0 15px 0;
-            line-height: 1.5;
-            flex-grow: 1; 
-        }
-
-        .product-info .price {
-            font-size: 18px;
-            font-weight: 800;
-            font-family: 'Exo 2', sans-serif;
-            margin: 0 0 15px 0;
-        }
-
-        .btn-download, .btn-buy {
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-family: 'Exo 2', sans-serif;
-            transition: 0.3s;
-            display: block;
-            cursor: pointer;
-        }
-        
+        .btn-download, .btn-buy { color: white; text-align: center; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold; font-family: 'Exo 2', sans-serif; transition: 0.3s; display: block; cursor: pointer; }
         .btn-download { background: linear-gradient(90deg, #ff7a28, #e55300); }
         .btn-download:hover { opacity: 0.8; box-shadow: 0 0 10px rgba(255,122,40,0.5); }
-
         .btn-buy { background: linear-gradient(90deg, #2f7bff, #1c49cc); }
         .btn-buy:hover { opacity: 0.8; box-shadow: 0 0 10px rgba(47,123,255,0.5); }
 
-        .mod-tabs-container {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        
-        .mod-tabs-container p {
-            color: #8da0c4;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .mod-tabs {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            -ms-overflow-style: none;  
-            scrollbar-width: none;  
-        }
+        .mod-tabs-container { margin-bottom: 25px; text-align: left; }
+        .mod-tabs-container p { color: #8da0c4; font-size: 14px; margin-bottom: 10px; }
+        .mod-tabs { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; -ms-overflow-style: none; scrollbar-width: none; }
         .mod-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { background-color: #0b1325; border: 1px solid #1f2d4a; color: #8da0c4; padding: 12px 25px; border-radius: 12px; font-weight: bold; font-family: 'Exo 2', sans-serif; font-size: 14px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+        .tab-btn.active { background: linear-gradient(180deg, rgba(255,122,40,0.15), rgba(255,122,40,0.05)); border-color: #ff7a28; color: #ffffff; box-shadow: 0 0 15px rgba(255,122,40,0.2); }
+        .tab-btn:hover:not(.active) { border-color: #8da0c4; color: white; }
 
-        .tab-btn {
-            background-color: #0b1325;
-            border: 1px solid #1f2d4a;
-            color: #8da0c4;
-            padding: 12px 25px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-family: 'Exo 2', sans-serif;
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: 0.3s;
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(180deg, rgba(255,122,40,0.15), rgba(255,122,40,0.05));
-            border-color: #ff7a28;
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(255,122,40,0.2);
-        }
-
-        .tab-btn:hover:not(.active) {
-            border-color: #8da0c4;
-            color: white;
-        }
-
-        .mod-list-content {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .mod-tab-pane {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        .mod-tab-pane.active {
-            display: flex;
-        }
-
-        .mod-list-item {
-            background: linear-gradient(90deg, rgba(255,122,40,0.03), #0b1325);
-            border: 1px solid rgba(255,122,40,0.3);
-            border-radius: 18px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .mod-list-item:hover {
-            border-color: #ff7a28;
-            box-shadow: 0 5px 20px rgba(255,122,40,0.15);
-            transform: translateX(5px);
-        }
-
+        .mod-list-content { display: flex; flex-direction: column; gap: 15px; }
+        .mod-tab-pane { display: none; animation: fadeIn 0.3s ease; }
+        .mod-tab-pane.active { display: flex; }
+        .mod-list-item { background: linear-gradient(90deg, rgba(255,122,40,0.03), #0b1325); border: 1px solid rgba(255,122,40,0.3); border-radius: 18px; padding: 15px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .mod-list-item:hover { border-color: #ff7a28; box-shadow: 0 5px 20px rgba(255,122,40,0.15); transform: translateX(5px); }
         .mod-list-left { display: flex; align-items: center; gap: 20px; }
         .mod-list-img { width: 75px; height: 75px; border-radius: 15px; object-fit: cover; border: 1px solid #1f2d4a; }
         .mod-list-info h3 { margin: 0 0 5px 0; color: #ffffff; font-family: 'Exo 2', sans-serif; font-size: 18px; font-weight: 800; text-transform: uppercase; }
@@ -405,7 +87,6 @@
         .ios-title-section { text-align: center; margin-bottom: 30px; }
         .ios-title-section h2 { font-family: 'Exo 2', sans-serif; font-size: 32px; font-weight: 800; margin: 0 0 5px 0; color: #ffffff; }
         .ios-title-section p { color: #8da0c4; font-size: 16px; margin: 0; }
-        
         .tool-card { background: linear-gradient(180deg, rgba(255, 230, 210, 0.1), rgba(10, 19, 40, 1)); border: 1px solid rgba(255, 122, 40, 0.4); border-radius: 20px; padding: 30px 20px; width: 220px; text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; transition: 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 122, 40, 0.05); }
         .tool-card:hover { transform: translateY(-5px); border-color: rgba(255, 122, 40, 0.9); box-shadow: 0 15px 40px rgba(255, 122, 40, 0.2); }
         .tool-icon { width: 90px; height: 90px; border-radius: 22px; object-fit: cover; margin-bottom: 20px; box-shadow: 0 8px 15px rgba(0,0,0,0.4); }
@@ -413,80 +94,17 @@
         .tool-subtitle { font-size: 14px; color: #8da0c4; margin: 0; }
 
         .acc-detail-container { text-align: center; }
-        .acc-detail-img { width: 100%; max-width: 700px; border-radius: 16px; border: 2px solid #2f7bff; box-shadow: 0 0 25px rgba(47,123,255,0.3); margin-bottom: 25px; }
+        .acc-detail-img { width: 100%; max-width: 700px; border-radius: 16px; border: 2px solid #2f7bff; box-shadow: 0 0 25px rgba(47,123,255,0.3); margin-bottom: 25px; object-fit: contain; }
 
-        .music-player {
-            position: fixed;
-            bottom: 16px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #12224a;
-            border: 1px solid #ff7a28;
-            border-radius: 30px;
-            padding: 6px 14px 6px 6px;
-            box-shadow: 0 4px 15px rgba(255, 122, 40, 0.4);
-            z-index: 1500;
-        }
-        .mp-play {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background-color: #ff7a28;
-            color: #ffffff;
-            font-size: 15px;
-            cursor: pointer;
-            display: grid;
-            place-items: center;
-            padding: 0;
-            transition: transform 0.2s;
-        }
+        .music-player { position: fixed; bottom: 16px; right: 20px; display: flex; align-items: center; gap: 8px; background-color: #12224a; border: 1px solid #ff7a28; border-radius: 30px; padding: 6px 14px 6px 6px; box-shadow: 0 4px 15px rgba(255, 122, 40, 0.4); z-index: 1500; }
+        .mp-play { width: 36px; height: 36px; border-radius: 50%; border: none; background-color: #ff7a28; color: #ffffff; font-size: 15px; cursor: pointer; display: grid; place-items: center; padding: 0; transition: transform 0.2s; }
         .mp-play:hover { transform: scale(1.1); }
-        .mp-vol-btn {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 17px;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-        }
-        .mp-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 80px;
-            height: 5px;
-            border-radius: 3px;
-            outline: none;
-            cursor: pointer;
-            background: linear-gradient(to right, #ff7a28 var(--v, 50%), #2a3a5e var(--v, 50%));
-        }
-        .mp-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #ffffff;
-            border: 2px solid #ff7a28;
-        }
-        .mp-slider::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ffffff;
-            border: 2px solid #ff7a28;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        .mp-vol-btn { background: none; border: none; color: #ffffff; font-size: 17px; cursor: pointer; padding: 0; line-height: 1; }
+        .mp-slider { -webkit-appearance: none; appearance: none; width: 80px; height: 5px; border-radius: 3px; outline: none; cursor: pointer; background: linear-gradient(to right, #ff7a28 var(--v, 50%), #2a3a5e var(--v, 50%)); }
+        .mp-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #ffffff; border: 2px solid #ff7a28; }
+        .mp-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: #ffffff; border: 2px solid #ff7a28; }
 
-        .modal {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; animation: fadeIn 0.3s ease;
-        }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
         .modal.active { display: flex; }
         .modal-content { background-color: #0b1325; border: 2px solid #2f7bff; border-radius: 15px; padding: 25px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 0 25px rgba(47,123,255,0.3); }
         .close-btn { position: absolute; top: 10px; right: 15px; color: #8da0c4; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s; }
@@ -505,6 +123,8 @@
         .zalo-btn:hover { box-shadow: 0 0 15px rgba(0,104,255,0.6); }
         .fb-btn { background: linear-gradient(90deg, #1877f2, #145dbf); }
         .fb-btn:hover { box-shadow: 0 0 15px rgba(24,119,242,0.6); }
+        .tiktok-btn { background: linear-gradient(90deg, #111111, #2b2b2b); border: 1px solid rgba(255,255,255,0.2); }
+        .tiktok-btn:hover { box-shadow: 0 0 15px rgba(254, 44, 85, 0.6); border-color: #fe2c55; }
 
         footer { text-align: center; padding: 20px; background-color: transparent; color: #8da0c4; margin-top: 50px; font-size: 14px; }
 
@@ -512,10 +132,18 @@
         .zalo-floating:hover { transform: scale(1.1); }
         .zalo-floating img { width: 100%; height: 100%; object-fit: cover; }
 
+        .tiktok-floating { position: fixed; bottom: 156px; right: 20px; width: 60px; height: 60px; background-color: #000000; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); z-index: 1500; text-decoration: none; animation: ring 2s infinite ease-in-out; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; }
+        .tiktok-floating:hover { transform: scale(1.1); box-shadow: 0 4px 20px rgba(254, 44, 85, 0.7); }
+        .tiktok-floating img { width: 100%; height: 100%; object-fit: cover; }
+
         @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-15deg); } 30% { transform: rotate(10deg); } 40% { transform: rotate(-10deg); } 50% { transform: rotate(5deg); } 60% { transform: rotate(-5deg); } 70% { transform: rotate(0); } 100% { transform: rotate(0); } }
     </style>
 </head>
 <body>
+
+    <div class="top-bar">
+        <div class="marquee-text">🔥 TỐI ƯU THIẾT BỊ, REG PC, ACC FREE FIRE LIÊN HỆ DKHOA 🔥</div>
+    </div>
 
     <header class="navbar">
         <a onclick="showScreen('screen-home')" class="logo-box">
@@ -600,8 +228,6 @@
                 <div class="mod-tabs">
                     <div class="tab-btn active" onclick="switchModTab(this, 'tab-nhanvat')">NHÂN VẬT</div>
                     <div class="tab-btn" onclick="switchModTab(this, 'tab-sung')">SÚNG</div>
-                    <div class="tab-btn" onclick="switchModTab(this, 'tab-bomkeo')">BOM KEO</div>
-                    <div class="tab-btn" onclick="switchModTab(this, 'tab-hanhdong')">HÀNH ĐỘNG</div>
                 </div>
             </div>
 
@@ -611,7 +237,7 @@
                         <img src="https://i.postimg.cc/SRQVjD2Z/image.png" alt="ALOK" class="mod-list-img">
                         <div class="mod-list-info">
                             <h3>ALOK</h3>
-                            <p>2 mod</p>
+                            <p>3 mod</p>
                         </div>
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
@@ -649,38 +275,12 @@
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
-                <a onclick="showUnupdateAlert()" class="mod-list-item">
+                <a onclick="showScreen('screen-app-download', 'https://link4m.org/PD3kbe', 'screen-mod', 'updating')" class="mod-list-item">
                     <div class="mod-list-left">
-                        <img src="https://i.postimg.cc/PqTYFWbb/image.png" alt="MOD SÚNG 2" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
+                        <img src="https://i.postimg.cc/kgvjvy8z/image.png" alt="MOD M1887 + MP40 LV7" class="mod-list-img">
                         <div class="mod-list-info">
-                            <h3>MOD SÚNG 2 (TRỐNG)</h3>
-                            <p>Chưa update</p>
-                        </div>
-                    </div>
-                    <div class="mod-list-arrow">&gt;</div>
-                </a>
-            </div>
-
-            <div class="mod-list-content mod-tab-pane" id="tab-bomkeo">
-                <a onclick="showUnupdateAlert()" class="mod-list-item">
-                    <div class="mod-list-left">
-                        <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="MOD BOM KEO 1" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
-                        <div class="mod-list-info">
-                            <h3>MOD BOM KEO 1 (TRỐNG)</h3>
-                            <p>Chưa update</p>
-                        </div>
-                    </div>
-                    <div class="mod-list-arrow">&gt;</div>
-                </a>
-            </div>
-
-            <div class="mod-list-content mod-tab-pane" id="tab-hanhdong">
-                <a onclick="showUnupdateAlert()" class="mod-list-item">
-                    <div class="mod-list-left">
-                        <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="MOD HÀNH ĐỘNG 1" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
-                        <div class="mod-list-info">
-                            <h3>MOD HÀNH ĐỘNG 1 (TRỐNG)</h3>
-                            <p>Chưa update</p>
+                            <h3>MOD M1887 + MP40 LV7</h3>
+                            <p>Có link tải FF thường</p>
                         </div>
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
@@ -713,6 +313,16 @@
                         <img src="https://i.postimg.cc/8CGXBXZy/image.png" alt="MOD AMONG US" class="mod-list-img">
                         <div class="mod-list-info">
                             <h3>MOD AMONG US</h3>
+                            <p>Có link tải FF thường</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
+                <a onclick="showScreen('screen-app-download', 'https://link4m.org/tqYoW', 'screen-mod-alok', 'https://link4m.org/u38WuI')" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/1zB8Jk7G/image.png" alt="MOD ALOK" class="mod-list-img">
+                        <div class="mod-list-info">
+                            <h3>MOD ALOK</h3>
                             <p>Có link tải FF thường</p>
                         </div>
                     </div>
@@ -843,20 +453,26 @@
                 <a href="#" id="final-download-adr-btn" target="_blank" class="tool-card">
                     <img src="https://i.postimg.cc/4NMYjrtG/image.png" alt="ADR" class="tool-icon">
                     <h3 class="tool-title">ADR</h3>
-                    <p class="tool-subtitle">Dành cho Android</p>
+                    <p class="tool-subtitle" id="adr-subtitle">Dành cho Android</p>
                 </a>
             </div>
         </div>
     </main>
+
+    <a href="https://www.tiktok.com/@userlovtik" target="_blank" class="tiktok-floating" title="TikTok">
+        <img src="https://i.postimg.cc/SKXyMjYh/image.png" alt="TikTok Liên Hệ">
+    </a>
+
+    <a href="https://zalo.me/0332858452" target="_blank" class="zalo-floating" title="Zalo">
+        <img src="https://i.postimg.cc/GhV2M6m7/image.png" alt="Zalo Liên Hệ">
+    </a>
 
     <div class="music-player" id="music-player">
         <button class="mp-play" id="music-toggle-btn" onclick="toggleBGM()" title="Phát / Dừng nhạc">▶</button>
         <button class="mp-vol-btn" id="music-mute-btn" onclick="toggleMute()" title="Tắt / bật tiếng">🔉</button>
         <input type="range" class="mp-slider" id="music-volume" min="0" max="100" value="50" oninput="setVolume(this.value)" title="Âm lượng">
     </div>
-    <audio id="bgm" loop preload="auto">
-        <source src="nhac.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgm" src="https://trkhoa1307.github.io/dkhoa001/nhac.mp3" loop preload="auto"></audio>
 
     <div id="payment-modal" class="modal">
         <div class="modal-content">
@@ -889,16 +505,16 @@
                 <img src="https://i.postimg.cc/GhV2M6m7/image.png" alt="Zalo Logo">
                 Nhắn tin qua Zalo
             </a>
-            <a href="https://www.facebook.com/ttrandangkkhoa" target="_blank" class="contact-btn fb-btn" style="margin-bottom: 0;">
+            <a href="https://www.facebook.com/ttrandangkkhoa" target="_blank" class="contact-btn fb-btn">
                 <img src="https://i.postimg.cc/0QSRyHsY/image.png" alt="FB Logo">
                 Nhắn tin qua Facebook
             </a>
+            <a href="https://www.tiktok.com/@userlovtik" target="_blank" class="contact-btn tiktok-btn" style="margin-bottom: 0;">
+                <img src="https://i.postimg.cc/SKXyMjYh/image.png" alt="TikTok Logo">
+                Theo dõi qua TikTok
+            </a>
         </div>
     </div>
-
-    <a href="https://zalo.me/0332858452" target="_blank" class="zalo-floating">
-        <img src="https://i.postimg.cc/GhV2M6m7/image.png" alt="Zalo Liên Hệ">
-    </a>
 
     <footer>
         <p>&copy; 2026 DANG KHOA MOD.</p>
@@ -907,46 +523,50 @@
     <script>
         function showScreen(screenId, iosLink = null, fromScreenId = 'screen-home', adrLink = null) {
             const screens = document.querySelectorAll('.screen');
-            screens.forEach(function(screen) {
-                screen.classList.remove('active');
-            });
+            screens.forEach(function(screen) { screen.classList.remove('active'); });
             document.getElementById(screenId).classList.add('active');
             window.scrollTo(0, 0);
-
             if (screenId === 'screen-app-download') {
                 const iosBtn = document.getElementById('final-download-btn');
                 const adrBtn = document.getElementById('final-download-adr-btn');
+                const adrSubtitle = document.getElementById('adr-subtitle');
                 const platformTitle = document.getElementById('download-platform-title');
 
                 if (iosLink) iosBtn.href = iosLink;
-                if (adrLink) {
-                    adrBtn.href = adrLink;
-                } else if (iosLink) {
-                    adrBtn.href = iosLink;
+
+                if (adrLink === 'updating') {
+                    adrBtn.href = 'javascript:void(0)';
+                    adrBtn.removeAttribute('target');
+                    adrBtn.onclick = function() {
+                        alert('Hiện đang cập nhật!');
+                        return false;
+                    };
+                    adrSubtitle.innerText = 'Hiện đang cập nhật';
+                    adrSubtitle.style.color = '#ff7a28';
+                } else {
+                    adrBtn.target = '_blank';
+                    adrBtn.onclick = null;
+                    adrSubtitle.innerText = 'Dành cho Android';
+                    adrSubtitle.style.color = '#8da0c4';
+                    if (adrLink) {
+                        adrBtn.href = adrLink;
+                    } else if (iosLink) {
+                        adrBtn.href = iosLink;
+                    }
                 }
 
                 if (fromScreenId === 'screen-ff') {
-                    adrBtn.style.display = 'none';
-                    platformTitle.innerText = 'iOS';
+                    adrBtn.style.display = 'none'; platformTitle.innerText = 'iOS';
                 } else {
-                    adrBtn.style.display = 'flex';
-                    platformTitle.innerText = 'iOS & ADR';
+                    adrBtn.style.display = 'flex'; platformTitle.innerText = 'iOS & ADR';
                 }
-
                 const backBtn = document.getElementById('app-download-back-btn');
                 backBtn.onclick = function() { showScreen(fromScreenId); };
-                
-                if (fromScreenId === 'screen-ff') {
-                    backBtn.innerHTML = '‹ Quay lại Cửa hàng Mod';
-                } else if (fromScreenId === 'screen-mod') {
-                    backBtn.innerHTML = '‹ Quay lại Mod File';
-                } else if (fromScreenId === 'screen-mod-alok') {
-                    backBtn.innerHTML = '‹ Quay lại ALOK';
-                } else if (fromScreenId === 'screen-mod-ignis') {
-                    backBtn.innerHTML = '‹ Quay lại IGNIS';
-                } else if (fromScreenId === 'screen-mod-kapella') {
-                    backBtn.innerHTML = 'KC Quay lại KAPELLA';
-                }
+                if (fromScreenId === 'screen-ff') { backBtn.innerHTML = '‹ Quay lại Cửa hàng Mod'; }
+                else if (fromScreenId === 'screen-mod') { backBtn.innerHTML = '‹ Quay lại Mod File'; }
+                else if (fromScreenId === 'screen-mod-alok') { backBtn.innerHTML = '‹ Quay lại ALOK'; }
+                else if (fromScreenId === 'screen-mod-ignis') { backBtn.innerHTML = '‹ Quay lại IGNIS'; }
+                else if (fromScreenId === 'screen-mod-kapella') { backBtn.innerHTML = '‹ Quay lại KAPELLA'; }
             }
         }
 
@@ -962,66 +582,12 @@
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(tab => tab.classList.remove('active'));
             element.classList.add('active');
-
             const panes = document.querySelectorAll('.mod-tab-pane');
             panes.forEach(pane => pane.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
         }
 
-        function showUnupdateAlert() {
-            alert('Chức năng này chưa update!');
-        }
-
-        let bgmWantPlay = false;
-
-        function updateVolumeUI() {
-            const bgm = document.getElementById('bgm');
-            const slider = document.getElementById('music-volume');
-            const muteBtn = document.getElementById('music-mute-btn');
-            const vol = bgm.muted ? 0 : bgm.volume;
-            slider.value = Math.round(vol * 100);
-            slider.style.setProperty('--v', slider.value + '%');
-            muteBtn.innerText = vol === 0 ? '🔇' : (vol < 0.5 ? '🔉' : '🔊');
-        }
-
-        function setVolume(v) {
-            const bgm = document.getElementById('bgm');
-            bgm.volume = v / 100;
-            bgm.muted = false;
-            updateVolumeUI();
-        }
-
-        function toggleMute() {
-            const bgm = document.getElementById('bgm');
-            bgm.muted = !bgm.muted;
-            if (!bgm.muted && bgm.volume === 0) bgm.volume = 0.5;
-            updateVolumeUI();
-        }
-
-        function toggleBGM() {
-            const bgm = document.getElementById('bgm');
-            const btn = document.getElementById('music-toggle-btn');
-
-            if (!bgmWantPlay) {
-                bgmWantPlay = true;
-                btn.innerText = '⏳';
-                bgm.play().then(() => {
-                    if (bgmWantPlay) btn.innerText = '⏸';
-                }).catch(e => {
-                    if (e.name === 'AbortError') return;
-                    bgmWantPlay = false;
-                    btn.innerText = '▶';
-                    alert('Không phát được nhạc. Mã lỗi: ' + e.name + ' - ' + e.message);
-                });
-            } else {
-                bgmWantPlay = false;
-                bgm.pause();
-                btn.innerText = '▶';
-            }
-        }
-
-        document.getElementById('bgm').volume = 0.5;
-        updateVolumeUI();
+        function showUnupdateAlert() { alert('Chức năng này chưa update!'); }
 
         function openPaymentPopup(accId) {
             document.getElementById('syntax-display').innerText = accId + ' + HỌ VÀ TÊN';
@@ -1040,10 +606,75 @@
         window.onclick = function(event) {
             let paymentModal = document.getElementById('payment-modal');
             let contactModal = document.getElementById('contact-modal');
-            
             if (event.target == paymentModal) paymentModal.classList.remove('active');
             if (event.target == contactModal) contactModal.classList.remove('active');
+        };
+
+        const bgm = document.getElementById('bgm');
+        const playBtn = document.getElementById('music-toggle-btn');
+        const slider = document.getElementById('music-volume');
+        const muteBtn = document.getElementById('music-mute-btn');
+        const unlockEvents = ['click', 'touchstart', 'pointerdown', 'keydown'];
+
+        bgm.volume = 0.5;
+
+        function updateVolumeUI() {
+            const vol = bgm.muted ? 0 : bgm.volume;
+            slider.value = Math.round(vol * 100);
+            slider.style.setProperty('--v', slider.value + '%');
+            muteBtn.innerText = vol === 0 ? '🔇' : (vol < 0.5 ? '🔉' : '🔊');
         }
+
+        function setVolume(v) {
+            bgm.volume = v / 100;
+            bgm.muted = false;
+            updateVolumeUI();
+        }
+
+        function toggleMute() {
+            bgm.muted = !bgm.muted;
+            if (!bgm.muted && bgm.volume === 0) bgm.volume = 0.5;
+            updateVolumeUI();
+        }
+
+        function removeUnlockListeners() {
+            unlockEvents.forEach(function(ev) {
+                document.removeEventListener(ev, unlockAudio, true);
+            });
+        }
+
+        function toggleBGM() {
+            removeUnlockListeners();
+            if (bgm.paused) {
+                bgm.play().then(function() {
+                    playBtn.innerText = '⏸';
+                }).catch(function() {});
+            } else {
+                bgm.pause();
+                playBtn.innerText = '▶';
+            }
+        }
+
+        function unlockAudio(e) {
+            if (e && e.target && e.target.closest && e.target.closest('#music-player')) {
+                removeUnlockListeners();
+                return;
+            }
+            bgm.play().then(function() {
+                playBtn.innerText = '⏸';
+                removeUnlockListeners();
+            }).catch(function() {});
+        }
+
+        updateVolumeUI();
+
+        bgm.play().then(function() {
+            playBtn.innerText = '⏸';
+        }).catch(function() {
+            unlockEvents.forEach(function(ev) {
+                document.addEventListener(ev, unlockAudio, true);
+            });
+        });
     </script>
 </body>
 </html>
