@@ -822,7 +822,7 @@
         <span class="music-icon">🎵</span>
         <span class="music-text" id="music-status">Bật nhạc nền</span>
     </div>
-    <audio id="bgm" loop>
+    <audio id="bgm" loop preload="auto">
         <source src="nhac.mp3" type="audio/mpeg">
     </audio>
 
@@ -950,7 +950,7 @@
                     btn.classList.add('playing');
                     status.innerText = 'Đang phát nhạc';
                 }).catch(e => {
-                    alert('Trình duyệt chặn phát tự động hoặc link nhạc Google Drive chưa cấp quyền công khai (Anyone with the link).');
+                    alert('Không phát được nhạc. Mã lỗi: ' + e.name + ' - ' + e.message);
                 });
             } else {
                 bgm.pause();
