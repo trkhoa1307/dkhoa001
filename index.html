@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DANG KHOA MOD</title>
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Exo+2:wght@600;700;800&display=swap');
 
@@ -16,7 +15,6 @@
             color: #e8eefc; 
         }
 
-        /* ----- NAVBAR ----- */
         .navbar {
             background-color: #050914;
             padding: 12px 5%;
@@ -92,7 +90,6 @@
             background-color: #ff7a28;
         }
 
-        /* ----- MAIN & LAYOUT ----- */
         main {
             padding: 40px 20px;
             max-width: 900px;
@@ -138,7 +135,6 @@
             margin: 0;
         }
 
-        /* Cơ chế Màn hình */
         .screen {
             display: none; 
             animation: fadeIn 0.4s ease;
@@ -152,7 +148,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Nút quay lại chung */
         .btn-back {
             display: inline-block;
             background-color: transparent;
@@ -170,13 +165,14 @@
             border-color: #ff7a28;
         }
 
-        /* ----- MÀN HÌNH 1: TRANG CHỦ ----- */
-        .game-grid {
+        .game-grid, .product-grid, .tool-grid {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap; 
         }
+
+        .tool-grid { gap: 25px; }
 
         .game-card {
             background: linear-gradient(160deg, rgba(47,123,255,0.2), #0b1325);
@@ -238,14 +234,6 @@
             margin: 0;
         }
 
-        /* ----- MÀN HÌNH 2: FREE FIRE (CỬA HÀNG MOD CŨ) ----- */
-        .product-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
         .product-card {
             background-color: #12224a;
             border: 1px solid #1f2d4a;
@@ -274,6 +262,7 @@
             height: 160px;
             object-fit: cover;
             border-bottom: 2px solid #1f2d4a;
+            cursor: pointer;
         }
 
         .product-info {
@@ -325,7 +314,6 @@
         .btn-buy { background: linear-gradient(90deg, #2f7bff, #1c49cc); }
         .btn-buy:hover { opacity: 0.8; box-shadow: 0 0 10px rgba(47,123,255,0.5); }
 
-        /* ----- MÀN HÌNH MOD FILE & NHÂN VẬT ----- */
         .mod-tabs-container {
             margin-bottom: 25px;
             text-align: left;
@@ -379,6 +367,14 @@
             gap: 15px;
         }
 
+        .mod-tab-pane {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .mod-tab-pane.active {
+            display: flex;
+        }
+
         .mod-list-item {
             background: linear-gradient(90deg, rgba(255,122,40,0.03), #0b1325);
             border: 1px solid rgba(255,122,40,0.3);
@@ -405,20 +401,57 @@
         .mod-list-arrow { color: #8da0c4; font-size: 20px; font-weight: bold; margin-right: 10px; transition: 0.3s; }
         .mod-list-item:hover .mod-list-arrow { color: #ff7a28; }
 
-        /* ----- MÀN HÌNH 5: TRANG TẢI APP IOS ----- */
         .ios-title-section { text-align: center; margin-bottom: 30px; }
-        .ios-title-section h2 { font-family: 'Exo 2', sans-serif; font-size: 36px; font-weight: 800; margin: 0 0 5px 0; color: #ffffff; }
+        .ios-title-section h2 { font-family: 'Exo 2', sans-serif; font-size: 32px; font-weight: 800; margin: 0 0 5px 0; color: #ffffff; }
         .ios-title-section p { color: #8da0c4; font-size: 16px; margin: 0; }
         
-        .tool-grid { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
-        .tool-card { background: linear-gradient(180deg, rgba(255, 230, 210, 0.1), rgba(10, 19, 40, 1)); border: 1px solid rgba(255, 122, 40, 0.4); border-radius: 20px; padding: 30px 20px; width: 200px; text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; transition: 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 122, 40, 0.05); }
+        .tool-card { background: linear-gradient(180deg, rgba(255, 230, 210, 0.1), rgba(10, 19, 40, 1)); border: 1px solid rgba(255, 122, 40, 0.4); border-radius: 20px; padding: 30px 20px; width: 220px; text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; transition: 0.3s; cursor: pointer; box-shadow: 0 10px 30px rgba(255, 122, 40, 0.05); }
         .tool-card:hover { transform: translateY(-5px); border-color: rgba(255, 122, 40, 0.9); box-shadow: 0 15px 40px rgba(255, 122, 40, 0.2); }
         .tool-icon { width: 90px; height: 90px; border-radius: 22px; object-fit: cover; margin-bottom: 20px; box-shadow: 0 8px 15px rgba(0,0,0,0.4); }
         .tool-title { font-family: 'Exo 2', sans-serif; font-size: 20px; font-weight: 800; color: #ffffff; margin: 0 0 5px 0; letter-spacing: 0.5px; }
         .tool-subtitle { font-size: 14px; color: #8da0c4; margin: 0; }
 
+        .acc-detail-container { text-align: center; }
+        .acc-detail-img { width: 100%; max-width: 700px; border-radius: 16px; border: 2px solid #2f7bff; box-shadow: 0 0 25px rgba(47,123,255,0.3); margin-bottom: 25px; }
 
-        /* ----- POPUP (MODAL) CHUNG ----- */
+        .music-floating {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background-color: #12224a;
+            border: 1px solid #ff7a28;
+            border-radius: 30px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(255, 122, 40, 0.4);
+            z-index: 1500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .music-floating:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 122, 40, 0.6);
+        }
+        .music-icon {
+            font-size: 18px;
+            animation: spin 3s linear infinite paused;
+        }
+        .music-floating.playing .music-icon {
+            animation-play-state: running;
+        }
+        .music-text {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; animation: fadeIn 0.3s ease;
@@ -444,7 +477,6 @@
 
         footer { text-align: center; padding: 20px; background-color: transparent; color: #8da0c4; margin-top: 50px; font-size: 14px; }
 
-        /* ----- NÚT ZALO TRÔI NỔI ----- */
         .zalo-floating { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #0068ff; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0, 104, 255, 0.5); z-index: 1500; text-decoration: none; animation: ring 2s infinite ease-in-out; transition: transform 0.3s; overflow: hidden; }
         .zalo-floating:hover { transform: scale(1.1); }
         .zalo-floating img { width: 100%; height: 100%; object-fit: cover; }
@@ -459,7 +491,6 @@
             <div class="badge-dk">DK</div>
             <div class="logo-title">DANG KHOA</div>
         </a>
-
         <nav class="nav-links">
             <a href="#" class="active" onclick="showScreen('screen-home')">Trang chủ</a>
             <a onclick="openContactPopup()">Liên hệ</a>
@@ -467,71 +498,55 @@
     </header>
 
     <main>
-        <!-- MÀN HÌNH 1: TRANG CHỦ -->
         <div id="screen-home" class="screen active">
             <div class="section-title">
                 <h2>CỬA HÀNG</h2>
                 <p>Chọn dịch vụ bạn muốn</p>
             </div>
-
             <section class="game-grid">
-                
-                <!-- THẺ 1: DẪN TỚI TRANG CỬA HÀNG MOD CŨ -->
                 <div onclick="showScreen('screen-ff')" class="game-card ff">
                     <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="Free Fire">
                     <h3>FREE FIRE</h3>
                     <p>FF thường · FF MAX</p>
                 </div>
-
-                <!-- THẺ 2: DẪN TỚI TRANG MOD FILE MỚI -->
                 <div onclick="showScreen('screen-mod')" class="game-card ff">
                     <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="Mod Free Fire">
                     <h3>MOD FREE FIRE</h3>
                     <p>Mod an toàn · Cập nhật liên tục</p>
                 </div>
-
-                <!-- THẺ 3: SHOP ACC -->
                 <div onclick="showScreen('screen-acc-ff')" class="game-card lq">
                     <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="Acc Free Fire">
                     <h3>ACC FREE FIRE</h3>
                     <p>Acc Siêu VIP · Giá Rẻ</p>
                 </div>
-
             </section>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 2: FREE FIRE (CỬA HÀNG MOD CŨ) -->
-        <!-- ========================================= -->
         <div id="screen-ff" class="screen">
             <button class="btn-back" onclick="showScreen('screen-home')">‹ Quay lại Trang chủ</button>
-
             <div class="section-title">
                 <h2 style="color: #ff7a28;">CỬA HÀNG MOD</h2>
                 <p>Chọn bản Mod bạn muốn tải về</p>
             </div>
-
             <div class="product-grid">
                 <div class="product-card orange">
-                    <img src="https://i.postimg.cc/LYMZ0GN3/af674dca.jpg" alt="Aim Neck">
+                    <img src="https://i.postimg.cc/d05wcFCQ/image.png" alt="Aim Neck">
                     <div class="product-info">
                         <h3>AIM NECK</h3>
                         <p class="desc">Aim neck hỗ trợ ghim đầu 90% giúp kéo tâm chuẩn xác, an toàn anti band đến khi band :)</p>
                         <p class="price" style="color: #ff7a28;">MIỄN PHÍ</p> 
-                        <a onclick="showScreen('screen-app-download', 'https://www.mediafire.com/file/w8hygvd35tqnpuv/neck+ffth.3105/file', 'screen-ff')" class="btn-download">TẢI VỀ NGAY</a>
+                        <a onclick="showScreen('screen-app-download', 'https://link4m.net/0WwYqG', 'screen-ff')" class="btn-download">TẢI VỀ NGAY</a>
                     </div>
                 </div>
-
                 <div class="product-card orange">
-                    <img src="https://i.postimg.cc/dZV3bFdC/17e8df08.jpg" alt="Chams Súng Keo">
+                    <img src="https://i.postimg.cc/PqTYFWbb/image.png" alt="Chams Súng Keo">
                     <div class="product-info">
                         <h3>CHAMS SÚNG + KEO</h3>
                         <p class="desc">Giúp bạn khai mở con mắt thứ 3 có thể nhìn thấy địch ở trong keo và sau vật cản.</p>
                         <p class="price" style="color: #ff7a28;">MIỄN PHÍ</p> 
-                        <a onclick="showScreen('screen-app-download', 'https://www.mediafire.com/file/59aurkw1w2kshuv/DVI+SÚNG+7+MÀU+FFTH.3105/file', 'screen-ff')" class="btn-download">TẢI VỀ NGAY</a>
+                        <a onclick="showScreen('screen-app-download', 'https://link4m.net/x7PyM6B', 'screen-ff')" class="btn-download">TẢI VỀ NGAY</a>
                     </div>
                 </div>
-
                 <div class="product-card orange">
                     <img src="https://i.postimg.cc/GhgzhWFM/image.png" alt="SOPHIA CRACK 3105">
                     <div class="product-info">
@@ -544,39 +559,32 @@
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 3: MOD FREE FIRE (MOD FILE) -->
-        <!-- ========================================= -->
         <div id="screen-mod" class="screen">
             <button class="btn-back" onclick="showScreen('screen-home')">‹ Quay lại Trang chủ</button>
-
             <div class="section-title">
                 <h2 style="color: #ff7a28;">MOD FILE</h2>
             </div>
-
             <div class="mod-tabs-container">
                 <p>Chọn loại mod</p>
                 <div class="mod-tabs">
-                    <div class="tab-btn active" onclick="switchModTab(this)">NHÂN VẬT</div>
-                    <div class="tab-btn" onclick="switchModTab(this)">SÚNG</div>
-                    <div class="tab-btn" onclick="switchModTab(this)">BOM KEO</div>
-                    <div class="tab-btn" onclick="switchModTab(this)">HÀNH ĐỘNG</div>
+                    <div class="tab-btn active" onclick="switchModTab(this, 'tab-nhanvat')">NHÂN VẬT</div>
+                    <div class="tab-btn" onclick="switchModTab(this, 'tab-sung')">SÚNG</div>
+                    <div class="tab-btn" onclick="switchModTab(this, 'tab-bomkeo')">BOM KEO</div>
+                    <div class="tab-btn" onclick="switchModTab(this, 'tab-hanhdong')">HÀNH ĐỘNG</div>
                 </div>
             </div>
 
-            <div class="mod-list-content" id="mod-content">
-                
+            <div class="mod-list-content mod-tab-pane active" id="tab-nhanvat">
                 <a onclick="showScreen('screen-mod-alok')" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/SRQVjD2Z/image.png" alt="ALOK" class="mod-list-img">
                         <div class="mod-list-info">
                             <h3>ALOK</h3>
-                            <p>1 mod</p>
+                            <p>2 mod</p>
                         </div>
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
-
                 <a onclick="showScreen('screen-mod-ignis')" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/J7SJtRyk/image.png" alt="IGNIS" class="mod-list-img">
@@ -587,7 +595,6 @@
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
-
                 <a onclick="showScreen('screen-mod-kapella')" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/T3pZ0q2D/image.png" alt="KAPELLA" class="mod-list-img">
@@ -598,16 +605,60 @@
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
+            </div>
 
+            <div class="mod-list-content mod-tab-pane" id="tab-sung">
+                <a onclick="showScreen('screen-app-download', 'https://link4m.org/a9svqV1E', 'screen-mod', 'https://link4m.net/KvPVg')" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/7LZj7Qs5/image.png" alt="MOD M590 DIGIMON IOS/ADR" class="mod-list-img">
+                        <div class="mod-list-info">
+                            <h3>MOD M590 DIGIMON IOS/ADR</h3>
+                            <p>Có link tải FF thường</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
+                <a onclick="showUnupdateAlert()" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/PqTYFWbb/image.png" alt="MOD SÚNG 2" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
+                        <div class="mod-list-info">
+                            <h3>MOD SÚNG 2 (TRỐNG)</h3>
+                            <p>Chưa update</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
+            </div>
+
+            <div class="mod-list-content mod-tab-pane" id="tab-bomkeo">
+                <a onclick="showUnupdateAlert()" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="MOD BOM KEO 1" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
+                        <div class="mod-list-info">
+                            <h3>MOD BOM KEO 1 (TRỐNG)</h3>
+                            <p>Chưa update</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
+            </div>
+
+            <div class="mod-list-content mod-tab-pane" id="tab-hanhdong">
+                <a onclick="showUnupdateAlert()" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="MOD HÀNH ĐỘNG 1" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
+                        <div class="mod-list-info">
+                            <h3>MOD HÀNH ĐỘNG 1 (TRỐNG)</h3>
+                            <p>Chưa update</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 6: CHI TIẾT ALOK -->
-        <!-- ========================================= -->
         <div id="screen-mod-alok" class="screen">
             <button class="btn-back" onclick="showScreen('screen-mod')">‹ Quay lại Mod File</button>
-
             <div class="sub-page-title" style="display: flex; align-items: center; gap: 15px;">
                 <img src="https://i.postimg.cc/SRQVjD2Z/image.png" alt="ALOK" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 1px solid #1f2d4a;">
                 <div>
@@ -615,9 +666,8 @@
                     <p>Chọn mod ALOK</p>
                 </div>
             </div>
-
             <div class="mod-list-content">
-                <a onclick="showScreen('screen-app-download', '#', 'screen-mod-alok')" class="mod-list-item">
+                <a onclick="showScreen('screen-app-download', 'https://link4m.net/ZQFojY', 'screen-mod-alok', 'https://link4m.net/ZQFojY')" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/nLjqRN7W/image.png" alt="ALOK ĐỘI TRƯỞNG MỸ" class="mod-list-img">
                         <div class="mod-list-info">
@@ -627,15 +677,21 @@
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
+                <a onclick="showScreen('screen-app-download', 'https://link4m.net/FoqeYRyl', 'screen-mod-alok', '#')" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/8CGXBXZy/image.png" alt="MOD AMONG US" class="mod-list-img">
+                        <div class="mod-list-info">
+                            <h3>MOD AMONG US</h3>
+                            <p>Có link tải FF thường</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 7: CHI TIẾT IGNIS -->
-        <!-- ========================================= -->
         <div id="screen-mod-ignis" class="screen">
             <button class="btn-back" onclick="showScreen('screen-mod')">‹ Quay lại Mod File</button>
-
             <div class="sub-page-title" style="display: flex; align-items: center; gap: 15px;">
                 <img src="https://i.postimg.cc/J7SJtRyk/image.png" alt="IGNIS" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 1px solid #1f2d4a;">
                 <div>
@@ -643,10 +699,8 @@
                     <p>Chọn mod IGNIS</p>
                 </div>
             </div>
-
             <div class="mod-list-content">
-                <!-- Bấm vào Mod Luffy đi qua trang Filza + 3105 trước khi sang link4m -->
-                <a onclick="showScreen('screen-app-download', 'https://link4m.net/DwQfI', 'screen-mod-ignis')" class="mod-list-item">
+                <a onclick="showScreen('screen-app-download', 'https://link4m.net/DwQfI', 'screen-mod-ignis', 'https://link4m.net/DwQfI')" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/BvxpqXQ6/image.png" alt="MOD IGNIS LUFFY" class="mod-list-img">
                         <div class="mod-list-info">
@@ -656,13 +710,12 @@
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
-
-                <a onclick="showScreen('screen-app-download', '#', 'screen-mod-ignis')" class="mod-list-item">
+                <a onclick="showUnupdateAlert()" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/J7SJtRyk/image.png" alt="MOD IGNIS 2" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
                         <div class="mod-list-info">
                             <h3>MOD IGNIS 2 (TRỐNG)</h3>
-                            <p>Bạn sẽ bổ sung sau</p>
+                            <p>Chưa update</p>
                         </div>
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
@@ -670,12 +723,8 @@
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 8: CHI TIẾT KAPELLA -->
-        <!-- ========================================= -->
         <div id="screen-mod-kapella" class="screen">
             <button class="btn-back" onclick="showScreen('screen-mod')">‹ Quay lại Mod File</button>
-
             <div class="sub-page-title" style="display: flex; align-items: center; gap: 15px;">
                 <img src="https://i.postimg.cc/T3pZ0q2D/image.png" alt="KAPELLA" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 1px solid #1f2d4a;">
                 <div>
@@ -683,14 +732,13 @@
                     <p>Chọn mod KAPELLA</p>
                 </div>
             </div>
-
             <div class="mod-list-content">
-                <a onclick="showScreen('screen-app-download', '#', 'screen-mod-kapella')" class="mod-list-item">
+                <a onclick="showUnupdateAlert()" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/T3pZ0q2D/image.png" alt="MOD KAPELLA 1" class="mod-list-img" style="filter: grayscale(100%); opacity: 0.5;">
                         <div class="mod-list-info">
                             <h3>MOD KAPELLA 1 (TRỐNG)</h3>
-                            <p>Bạn sẽ bổ sung sau</p>
+                            <p>Chưa update</p>
                         </div>
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
@@ -698,21 +746,15 @@
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 4: SHOP ACC FREE FIRE (GIỮ NGUYÊN KHÔNG ĐI QUA FILZA) -->
-        <!-- ========================================= -->
         <div id="screen-acc-ff" class="screen">
             <button class="btn-back" onclick="showScreen('screen-home')">‹ Quay lại Trang chủ</button>
-
             <div class="section-title">
                 <h2 style="color: #2f7bff;">SHOP ACC FREE FIRE</h2>
                 <p>Tài khoản giá rẻ, uy tín, giao dịch tự động</p>
             </div>
-
             <div class="product-grid">
-                <!-- ACC #001 -->
                 <div class="product-card blue">
-                    <img src="https://i.postimg.cc/JhsC7sTm/image.png" alt="Acc VIP">
+                    <img src="https://i.postimg.cc/JhsC7sTm/image.png" alt="Acc VIP" onclick="showAccDetail('001', '3.200.000 VNĐ', 'https://i.postimg.cc/JhsC7sTm/image.png')">
                     <div class="product-info">
                         <h3>#001</h3>
                         <p class="desc">chi tiết xin liên hệ admin</p>
@@ -720,10 +762,8 @@
                         <a onclick="openPaymentPopup('001')" class="btn-buy">MUA NGAY</a>
                     </div>
                 </div>
-
-                <!-- ACC #002 -->
                 <div class="product-card blue">
-                    <img src="https://i.postimg.cc/Qt5L5RZ8/image.png" alt="Acc Random">
+                    <img src="https://i.postimg.cc/Qt5L5RZ8/image.png" alt="Acc Random" onclick="showAccDetail('002', '2.300.000 VNĐ', 'https://i.postimg.cc/Qt5L5RZ8/image.png')">
                     <div class="product-info">
                         <h3>#002</h3>
                         <p class="desc">chi tiết xin liên hệ admin</p>
@@ -731,10 +771,8 @@
                         <a onclick="openPaymentPopup('002')" class="btn-buy">MUA NGAY</a>
                     </div>
                 </div>
-
-                <!-- ACC #003 -->
                 <div class="product-card blue">
-                    <img src="https://i.postimg.cc/tR8qHfK0/image.png" alt="Acc Mới">
+                    <img src="https://i.postimg.cc/tR8qHfK0/image.png" alt="Acc Mới" onclick="showAccDetail('003', '1.100.000 VNĐ', 'https://i.postimg.cc/tR8qHfK0/image.png')">
                     <div class="product-info">
                         <h3>#003</h3>
                         <p class="desc">chi tiết xin liên hệ admin</p>
@@ -745,30 +783,49 @@
             </div>
         </div>
 
-        <!-- ========================================= -->
-        <!-- MÀN HÌNH 5: TRANG TẢI APP (FILZA + 3105 TRANG TRUNG GIAN) -->
-        <!-- ========================================= -->
-        <div id="screen-app-download" class="screen">
-            <button class="btn-back" id="app-download-back-btn" onclick="showScreen('screen-home')">‹ Quay lại</button>
-
-            <div class="ios-title-section">
-                <h2>iOS</h2>
-                <p>Chọn công cụ</p>
+        <div id="screen-acc-detail" class="screen">
+            <button class="btn-back" onclick="showScreen('screen-acc-ff')">‹ Quay lại Shop Acc</button>
+            <div class="section-title">
+                <h2 id="detail-acc-title" style="color: #2f7bff;">CHI TIẾT ACC</h2>
+                <p id="detail-acc-price">Giá: 0 VNĐ</p>
             </div>
-
-            <div class="tool-grid">
-                <!-- Bấm vào thẻ này sẽ dẫn tới link tải thực tế của từng mod -->
-                <a href="#" id="final-download-btn" target="_blank" class="tool-card" style="width: 250px;">
-                    <img src="https://i.postimg.cc/dVZzBxhr/image.png" alt="Filza" class="tool-icon">
-                    <h3 class="tool-title">FILZA + 3105</h3>
-                    <p class="tool-subtitle">Dành cho iOS</p>
-                </a>
+            <div class="acc-detail-container">
+                <img id="detail-acc-img" src="" alt="Chi tiết Acc" class="acc-detail-img">
+                <div>
+                    <a id="detail-buy-btn" onclick="" class="btn-buy" style="max-width: 250px; margin: 0 auto; font-size: 16px;">MUA NGAY ACC NÀY</a>
+                </div>
             </div>
         </div>
 
+        <div id="screen-app-download" class="screen">
+            <button class="btn-back" id="app-download-back-btn" onclick="showScreen('screen-home')">‹ Quay lại</button>
+            <div class="ios-title-section">
+                <h2 id="download-platform-title">iOS & ADR</h2>
+                <p>Chọn công cụ</p>
+            </div>
+            <div class="tool-grid">
+                <a href="#" id="final-download-btn" target="_blank" class="tool-card">
+                    <img src="https://i.postimg.cc/dVZzBxhr/image.png" alt="iOS Filza" class="tool-icon">
+                    <h3 class="tool-title">FILZA + 3105</h3>
+                    <p class="tool-subtitle">Dành cho iOS</p>
+                </a>
+                <a href="#" id="final-download-adr-btn" target="_blank" class="tool-card">
+                    <img src="https://i.postimg.cc/4NMYjrtG/image.png" alt="ADR" class="tool-icon">
+                    <h3 class="tool-title">ADR</h3>
+                    <p class="tool-subtitle">Dành cho Android</p>
+                </a>
+            </div>
+        </div>
     </main>
 
-    <!-- BẢNG POPUP THANH TOÁN -->
+    <div class="music-floating" id="music-toggle-btn" onclick="toggleBGM()">
+        <span class="music-icon">🎵</span>
+        <span class="music-text" id="music-status">Bật nhạc nền</span>
+    </div>
+    <audio id="bgm" loop>
+        <source src="https://docs.google.com/uc?export=download&id=1RN--bBwjJxI7_CCnph8el6qW-tJ6Y8AK" type="audio/mpeg">
+    </audio>
+
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closePopup('payment-modal')">&times;</span>
@@ -789,7 +846,6 @@
         </div>
     </div>
 
-    <!-- BẢNG POPUP LIÊN HỆ -->
     <div id="contact-modal" class="modal">
         <div class="modal-content" style="border-color: #ff7a28; box-shadow: 0 0 25px rgba(255,122,40,0.3);">
             <span class="close-btn" onclick="closePopup('contact-modal')">&times;</span>
@@ -797,12 +853,10 @@
             <p style="color: #8da0c4; font-size: 14px; margin-bottom: 25px;">
                 Chọn nền tảng bạn muốn sử dụng để trò chuyện trực tiếp với Admin.
             </p>
-            
             <a href="https://zalo.me/0332858452" target="_blank" class="contact-btn zalo-btn">
                 <img src="https://i.postimg.cc/GhV2M6m7/image.png" alt="Zalo Logo">
                 Nhắn tin qua Zalo
             </a>
-            
             <a href="https://www.facebook.com/ttrandangkkhoa" target="_blank" class="contact-btn fb-btn" style="margin-bottom: 0;">
                 <img src="https://i.postimg.cc/0QSRyHsY/image.png" alt="FB Logo">
                 Nhắn tin qua Facebook
@@ -810,7 +864,6 @@
         </div>
     </div>
 
-    <!-- NÚT ZALO TRÔI NỔI -->
     <a href="https://zalo.me/0332858452" target="_blank" class="zalo-floating">
         <img src="https://i.postimg.cc/GhV2M6m7/image.png" alt="Zalo Liên Hệ">
     </a>
@@ -819,9 +872,8 @@
         <p>&copy; 2026 DANG KHOA MOD.</p>
     </footer>
 
-    <!-- JS ĐIỀU KHIỂN WEB -->
     <script>
-        function showScreen(screenId, downloadLink = null, fromScreenId = 'screen-home') {
+        function showScreen(screenId, iosLink = null, fromScreenId = 'screen-home', adrLink = null) {
             const screens = document.querySelectorAll('.screen');
             screens.forEach(function(screen) {
                 screen.classList.remove('active');
@@ -830,9 +882,25 @@
             window.scrollTo(0, 0);
 
             if (screenId === 'screen-app-download') {
-                if (downloadLink) {
-                    document.getElementById('final-download-btn').href = downloadLink;
+                const iosBtn = document.getElementById('final-download-btn');
+                const adrBtn = document.getElementById('final-download-adr-btn');
+                const platformTitle = document.getElementById('download-platform-title');
+
+                if (iosLink) iosBtn.href = iosLink;
+                if (adrLink) {
+                    adrBtn.href = adrLink;
+                } else if (iosLink) {
+                    adrBtn.href = iosLink;
                 }
+
+                if (fromScreenId === 'screen-ff') {
+                    adrBtn.style.display = 'none';
+                    platformTitle.innerText = 'iOS';
+                } else {
+                    adrBtn.style.display = 'flex';
+                    platformTitle.innerText = 'iOS & ADR';
+                }
+
                 const backBtn = document.getElementById('app-download-back-btn');
                 backBtn.onclick = function() { showScreen(fromScreenId); };
                 
@@ -845,15 +913,50 @@
                 } else if (fromScreenId === 'screen-mod-ignis') {
                     backBtn.innerHTML = '‹ Quay lại IGNIS';
                 } else if (fromScreenId === 'screen-mod-kapella') {
-                    backBtn.innerHTML = '‹ Quay lại KAPELLA';
+                    backBtn.innerHTML = 'KC Quay lại KAPELLA';
                 }
             }
         }
 
-        function switchModTab(element) {
+        function showAccDetail(accId, price, imgSrc) {
+            document.getElementById('detail-acc-title').innerText = 'CHI TIẾT TÀI KHOẢN #' + accId;
+            document.getElementById('detail-acc-price').innerText = 'Giá: ' + price;
+            document.getElementById('detail-acc-img').src = imgSrc;
+            document.getElementById('detail-buy-btn').setAttribute('onclick', "openPaymentPopup('" + accId + "')");
+            showScreen('screen-acc-detail');
+        }
+
+        function switchModTab(element, tabId) {
             const tabs = document.querySelectorAll('.tab-btn');
             tabs.forEach(tab => tab.classList.remove('active'));
             element.classList.add('active');
+
+            const panes = document.querySelectorAll('.mod-tab-pane');
+            panes.forEach(pane => pane.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function showUnupdateAlert() {
+            alert('Chức năng này chưa update!');
+        }
+
+        function toggleBGM() {
+            const bgm = document.getElementById('bgm');
+            const btn = document.getElementById('music-toggle-btn');
+            const status = document.getElementById('music-status');
+
+            if (bgm.paused) {
+                bgm.play().then(() => {
+                    btn.classList.add('playing');
+                    status.innerText = 'Đang phát nhạc';
+                }).catch(e => {
+                    alert('Trình duyệt chặn phát tự động hoặc link nhạc Google Drive chưa cấp quyền công khai (Anyone with the link).');
+                });
+            } else {
+                bgm.pause();
+                btn.classList.remove('playing');
+                status.innerText = 'Tắt nhạc nền';
+            }
         }
 
         function openPaymentPopup(accId) {
@@ -874,14 +977,9 @@
             let paymentModal = document.getElementById('payment-modal');
             let contactModal = document.getElementById('contact-modal');
             
-            if (event.target == paymentModal) {
-                paymentModal.classList.remove('active');
-            }
-            if (event.target == contactModal) {
-                contactModal.classList.remove('active');
-            }
+            if (event.target == paymentModal) paymentModal.classList.remove('active');
+            if (event.target == contactModal) contactModal.classList.remove('active');
         }
     </script>
-
 </body>
 </html>
