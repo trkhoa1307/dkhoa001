@@ -48,12 +48,6 @@
         .game-card img { width: 130px; height: 130px; border-radius: 22px; object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 18px rgba(0,0,0,0.6); }
         .game-card h3 { margin: 10px 0 5px 0; font-family: 'Exo 2', sans-serif; font-size: 16px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; }
         .game-card p { font-size: 12px; color: #8da0c4; margin: 0; }
-        @media (max-width: 600px) {
-            .game-grid { gap: 14px; }
-            .game-card { width: 100%; max-width: 300px; padding: 14px 12px 12px; border-radius: 22px; }
-            .game-card img { width: 90px; height: 90px; border-radius: 18px; margin-bottom: 8px; }
-            .game-card h3 { margin: 6px 0 4px 0; font-size: 15px; }
-        }
 
         .product-card { background-color: #12224a; border: 1px solid #1f2d4a; border-radius: 15px; width: 280px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
         .product-card.orange:hover { transform: translateY(-5px); border-color: #ff7a28; box-shadow: 0 0 20px rgba(255,122,40,0.3); }
@@ -147,6 +141,10 @@
 </head>
 <body>
 
+    <div class="top-bar">
+        <div class="marquee-text">🔥 TỐI ƯU THIẾT BỊ, REG PC, ACC FREE FIRE LIÊN HỆ DKHOA 🔥</div>
+    </div>
+
     <header class="navbar">
         <a onclick="showScreen('screen-home')" class="logo-box">
             <div class="badge-dk">DK</div>
@@ -157,10 +155,6 @@
             <a onclick="openContactPopup()">Liên hệ</a>
         </nav>
     </header>
-
-    <div class="top-bar">
-        <div class="marquee-text">🔥 TỐI ƯU THIẾT BỊ, REG PC, ACC FREE FIRE LIÊN HỆ DKHOA 🔥</div>
-    </div>
 
     <main>
         <div id="screen-home" class="screen active">
@@ -243,7 +237,7 @@
                         <img src="https://i.postimg.cc/SRQVjD2Z/image.png" alt="ALOK" class="mod-list-img">
                         <div class="mod-list-info">
                             <h3>ALOK</h3>
-                            <p>3 mod</p>
+                            <p>4 mod</p>
                         </div>
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
@@ -314,7 +308,7 @@
                     </div>
                     <div class="mod-list-arrow">&gt;</div>
                 </a>
-                <a onclick="showScreen('screen-app-download', 'https://link4m.net/FoqeYRyl', 'screen-mod-alok', '#')" class="mod-list-item">
+                <a onclick="showScreen('screen-app-download', 'https://link4m.net/FoqeYRyl', 'screen-mod-alok', 'updating')" class="mod-list-item">
                     <div class="mod-list-left">
                         <img src="https://i.postimg.cc/8CGXBXZy/image.png" alt="MOD AMONG US" class="mod-list-img">
                         <div class="mod-list-info">
@@ -329,6 +323,16 @@
                         <img src="https://i.postimg.cc/1zB8Jk7G/image.png" alt="MOD ALOK" class="mod-list-img">
                         <div class="mod-list-info">
                             <h3>MOD ALOK</h3>
+                            <p>Có link tải FF thường</p>
+                        </div>
+                    </div>
+                    <div class="mod-list-arrow">&gt;</div>
+                </a>
+                <a onclick="showScreen('screen-app-download', 'https://link4m.org/4T27rz', 'screen-mod-alok', 'updating')" class="mod-list-item">
+                    <div class="mod-list-left">
+                        <img src="https://i.postimg.cc/N0nydvby/image.png" alt="MOD VỆ BINH TINH TÚ" class="mod-list-img">
+                        <div class="mod-list-info">
+                            <h3>MOD VỆ BINH TINH TÚ</h3>
                             <p>Có link tải FF thường</p>
                         </div>
                     </div>
@@ -540,14 +544,14 @@
 
                 if (iosLink) iosBtn.href = iosLink;
 
-                if (adrLink === 'updating') {
+                if (adrLink === 'updating' || adrLink === '#') {
                     adrBtn.href = 'javascript:void(0)';
                     adrBtn.removeAttribute('target');
                     adrBtn.onclick = function() {
-                        alert('Hiện đang cập nhật!');
+                        alert('Chưa cập nhật!');
                         return false;
                     };
-                    adrSubtitle.innerText = 'Hiện đang cập nhật';
+                    adrSubtitle.innerText = 'Chưa cập nhật';
                     adrSubtitle.style.color = '#ff7a28';
                 } else {
                     adrBtn.target = '_blank';
