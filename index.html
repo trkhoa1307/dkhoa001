@@ -137,9 +137,116 @@
         .tiktok-floating img { width: 100%; height: 100%; object-fit: cover; }
 
         @keyframes ring { 0% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-15deg); } 30% { transform: rotate(10deg); } 40% { transform: rotate(-10deg); } 50% { transform: rotate(5deg); } 60% { transform: rotate(-5deg); } 70% { transform: rotate(0); } 100% { transform: rotate(0); } }
+   /* ================= GIAO DIỆN NỀN & THẺ KÍNH MỜ (GLASSMORPHISM) ================= */
+
+/* 1. Đổi hình nền toàn trang (Thay link ảnh nền của bạn vào trong ngoặc đơn) */
+body {
+    background: linear-gradient(rgba(5, 9, 20, 0.6), rgba(5, 9, 20, 0.75)), 
+                url('https://i.postimg.cc/0y15rdTh/naruto-ff.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}
+
+/* 2. Chuyển thẻ sản phẩm & thẻ trang chủ sang dạng kính mờ trong suốt */
+.product-card, .game-card {
+    position: relative;
+    width: 100% !important;
+    max-width: 380px;
+    background: rgba(18, 22, 31, 0.65) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 22px !important;
+    padding: 24px 20px 18px !important;
+    box-sizing: border-box;
+    text-align: center;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 3. Thu nhỏ ảnh sản phẩm thành Icon vuông bo góc nằm giữa giống mẫu */
+.product-card img, .game-card img {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 16px !important;
+    object-fit: cover;
+    margin: 0 auto 12px auto !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.product-info {
+    padding: 0 !important;
+    width: 100%;
+    align-items: center;
+}
+
+.product-info h3, .game-card h3 {
+    font-size: 17px !important;
+    letter-spacing: 1px;
+    margin-bottom: 6px !important;
+}
+
+.product-info .desc, .game-card p {
+    font-size: 13px !important;
+    color: #b0bed9 !important;
+    margin-bottom: 14px !important;
+}
+
+/* 4. Nhãn HOT tự động ở góc trên bên phải mỗi thẻ */
+.product-card::before, .game-card::before {
+    content: 'HOT';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: linear-gradient(90deg, #ff2a75, #a82ffc);
+    color: #ffffff;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* 5. Nút bấm стильно dạng thanh ngang tối màu */
+.btn-download, .btn-buy {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(16, 42, 58, 0.75) !important;
+    border: 1px solid rgba(46, 204, 113, 0.35) !important;
+    color: #38ef7d !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    font-size: 13px !important;
+    letter-spacing: 1px;
+}
+
+/* 6. Dòng chữ ● AVAILABLE tự động ở đáy thẻ */
+.product-info::after, .game-card::after {
+    content: '● AVAILABLE';
+    display: block;
+    margin-top: 14px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #2ecc71;
+    letter-spacing: 1px;
+}
+body { background: transparent !important; }
+.video-bg {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    object-fit: cover; z-index: -2; pointer-events: none;
+}
+.video-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(5, 9, 20, 0.65); z-index: -1; pointer-events: none;
+}
     </style>
 </head>
 <body>
+<video class="video-bg" autoplay loop muted playsinline>
+        <source src="https://raw.githubusercontent.com/trkhoa1307/dkhoa001/main/nenwed.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
 
     <div class="top-bar">
         <div class="marquee-text">🔥 TỐI ƯU THIẾT BỊ, REG PC, ACC FREE FIRE LIÊN HỆ DKHOA 🔥</div>
@@ -165,7 +272,7 @@
             <section class="game-grid">
                 <div onclick="showScreen('screen-ff')" class="game-card ff">
                     <img src="https://i.postimg.cc/0y15rdTh/naruto-ff.jpg" alt="Free Fire">
-                    <h3>FREE FIRE</h3>
+                    <h3>AIM FREE FIRE</h3>
                     <p>FF thường · FF MAX</p>
                 </div>
                 <div onclick="showScreen('screen-mod')" class="game-card ff">
